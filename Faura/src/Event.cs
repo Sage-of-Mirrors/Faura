@@ -42,6 +42,7 @@ namespace Faura.src
                     strWriter.Write(mes.mMessageData);
                     strWriter.Write('\n');
                     strWriter.Write('\n');
+                    strWriter.Flush();
                 }
 
                 //string str = strWriter.ToString();
