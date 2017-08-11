@@ -45,15 +45,12 @@ namespace Faura.src
 
             using (FileStream debug = new FileStream($"D:\\Ar Tonelico\\event dump\\{Path.GetFileName(filePath)}.txt", FileMode.Create, FileAccess.Write))
             {
-                //EndianBinaryWriter writer = new EndianBinaryWriter(debug, Endian.Big);
+                EndianBinaryWriter writer = new EndianBinaryWriter(debug, Endian.Big);
                 StreamWriter strWriter = new StreamWriter(debug, Encoding.GetEncoding(932));
 
                 foreach (Message mes in mMessageList)
                 {
-                    strWriter.Write(mes.mMessageData);
-                    strWriter.Write('\n');
-                    strWriter.Write('\n');
-                    strWriter.Flush();
+                    mes.WriteString(writer);
                 }
 
                 //string str = strWriter.ToString();

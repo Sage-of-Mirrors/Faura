@@ -35,12 +35,31 @@ namespace Faura.src
             mMessageLength = reader.ReadInt32();
 
             byte[] rawMessageData = reader.ReadBytes(mMessageLength);
-            mMessageData = MessageDataProcessor.DecodeBytes(rawMessageData);
+            mMessageData = MessageDataProcessor.DecodeBytes(rawMessageData).Trim('\0');
 
             PadMessageReader(reader);
         }
 
-        public void Write(EndianBinaryWriter writer, int index)
+        public void WriteString(EndianBinaryWriter writer)
+        {
+            writer.Write("msg:\n".ToCharArray());
+            writer.Write("meta: ".ToCharArray());
+            writer.Write($"\"<BoxType { mBoxType }> ".ToCharArray());
+            writer.Write($"<CharacterName { mCharacterName }> ".ToCharArray());
+            writer.Write($"<CharacterID { mCharacterID }> ".ToCharArray());
+            writer.Write($"<PortraitPosition { mPortraitPosition }>\"".ToCharArray());
+
+            writer.Write('\n');
+
+            writer.Write("text: ".ToCharArray());
+            writer.Write('\"');
+            writer.Write(mMessageData.ToCharArray());
+            writer.Write('\"');
+            writer.Write('\n');
+            writer.Write('\n');
+        }
+
+        public void WriteCompiled(EndianBinaryWriter writer, int index)
         {
             writer.Write((int)mBoxType);
             writer.Write(mCharacterName);

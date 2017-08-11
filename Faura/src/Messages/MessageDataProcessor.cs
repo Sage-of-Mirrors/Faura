@@ -39,12 +39,12 @@ namespace Faura.src
                     case '#':
                         if (normalizedData[i + 1] == '0')
                         {
-                            chars.AddRange("\\hym".ToArray());
+                            chars.AddRange("<hym>".ToArray());
                             advanceAmount = 2;
                         }
                         else if (normalizedData[i + 1] == '#')
                         {
-                            chars.AddRange("\\eng".ToArray());
+                            chars.AddRange("<nft>".ToArray());
                             advanceAmount = 2;
                         }
                         break;
@@ -68,7 +68,7 @@ namespace Faura.src
             // Carriage return (new line)
             if (mesData[index + 1] == 'R')
             {
-                tempList.Add('\n');
+                tempList.AddRange("<nln>");
                 advanceAmount = 2;
             }
             // Color. We have to figure out which though
@@ -79,19 +79,19 @@ namespace Faura.src
                 switch (lastTwoChars)
                 {
                     case "NR":
-                        tempList.AddRange("\\nrm".ToArray());
+                        tempList.AddRange("<ncl>".ToArray());
                         advanceAmount = 4;
                         break;
                     case "YL":
-                        tempList.AddRange("\\ylw".ToArray());
+                        tempList.AddRange("<ylw>".ToArray());
                         advanceAmount = 4;
                         break;
                     case "EG":
-                        tempList.AddRange("\\grn".ToArray());
+                        tempList.AddRange("<grn>".ToArray());
                         advanceAmount = 4;
                         break;
                     case "RE":
-                        tempList.AddRange("\\red".ToArray());
+                        tempList.AddRange("<red>".ToArray());
                         advanceAmount = 4;
                         break;
                     default:
