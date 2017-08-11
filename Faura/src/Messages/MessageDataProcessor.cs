@@ -79,15 +79,15 @@ namespace Faura.src
                 switch (lastTwoChars)
                 {
                     case "NR":
-                        tempList.AddRange("\\normal".ToArray());
+                        tempList.AddRange("\\nrm".ToArray());
                         advanceAmount = 4;
                         break;
                     case "YL":
-                        tempList.AddRange("\\yellow".ToArray());
+                        tempList.AddRange("\\ylw".ToArray());
                         advanceAmount = 4;
                         break;
                     case "EG":
-                        tempList.AddRange("\\green".ToArray());
+                        tempList.AddRange("\\grn".ToArray());
                         advanceAmount = 4;
                         break;
                     case "RE":

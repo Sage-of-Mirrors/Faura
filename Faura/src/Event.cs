@@ -27,12 +27,23 @@ namespace Faura.src
 
                 int messageCount = reader.ReadInt32();
                 for (int i = 0; i < messageCount; i++)
+                {
+                    uint test = reader.PeekReadUInt32();
+                    while (test >= 1082220674)
+                    {
+                        if (reader.PeekReadUInt32() >= 1082220674)
+                            test = reader.ReadUInt32();
+                        else
+                            break;
+                    }
+
                     mMessageList.Add(new Message(reader));
+                }
 
                 int unknownInt = reader.ReadInt32();
             }
 
-            using (FileStream debug = new FileStream(@"D:\Ar Tonelico\eventtext.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream debug = new FileStream($"D:\\Ar Tonelico\\event dump\\{Path.GetFileName(filePath)}.txt", FileMode.Create, FileAccess.Write))
             {
                 //EndianBinaryWriter writer = new EndianBinaryWriter(debug, Endian.Big);
                 StreamWriter strWriter = new StreamWriter(debug, Encoding.GetEncoding(932));
