@@ -10,16 +10,16 @@ namespace Faura.src
 {
     public class Event
     {
-        private List<Message> mMessageList;
+        public List<Message> MessageList;
 
         public Event()
         {
-
+            MessageList = new List<Message>();
         }
 
         public Event(string filePath)
         {
-            mMessageList = new List<Message>();
+            MessageList = new List<Message>();
 
             using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
@@ -37,7 +37,7 @@ namespace Faura.src
                             break;
                     }
 
-                    mMessageList.Add(new Message(reader));
+                    MessageList.Add(new Message(reader));
                 }
 
                 int unknownInt = reader.ReadInt32();
@@ -48,7 +48,7 @@ namespace Faura.src
                 //EndianBinaryWriter writer = new EndianBinaryWriter(debug, Endian.Big);
                 StreamWriter strWriter = new StreamWriter(debug, Encoding.GetEncoding(932));
 
-                foreach (Message mes in mMessageList)
+                foreach (Message mes in MessageList)
                 {
                     strWriter.Write(mes.mMessageData);
                     strWriter.Write('\n');

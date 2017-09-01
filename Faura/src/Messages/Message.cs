@@ -9,6 +9,12 @@ namespace Faura.src
 {
     public class Message
     {
+        public string TextboxType { get; set; }
+        public string CharacterName { get; set; }
+        public string CharacterID { get; set; }
+        public string PortraitPosition { get; set; }
+        public string MessageData { get; set; }
+
         private TextBoxType mBoxType;
         private int mCharacterName;
         private int mCharacterID;
@@ -23,6 +29,7 @@ namespace Faura.src
         {
 
         }
+
 
         public Message(EndianBinaryReader reader)
         {

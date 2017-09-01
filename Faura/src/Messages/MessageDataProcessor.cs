@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameFormatReader.Common;
 using System.Threading.Tasks;
 
 namespace Faura.src
@@ -21,6 +22,21 @@ namespace Faura.src
         public static byte[] EncodeString(string messageData)
         {
             return new byte[1];
+        }
+
+        public static void PadMessageReader(EndianBinaryReader reader)
+        {
+            // Pad up to a 32 byte alignment
+            // Formula: (x + (n-1)) & ~(n-1)
+            long nextAligned = (reader.BaseStream.Position + (4 - 1)) & ~(4 - 1);
+
+            long delta = nextAligned - reader.BaseStream.Position;
+            //reader.BaseStream.Position = reader.BaseStream.Position;
+
+            for (int i = 0; i < delta; i++)
+            {
+                reader.SkipByte();
+            }
         }
 
         private static string ControlCodesToEscapeChars(string normalizedData)

@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\EndianBinaryStreams.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,9 +55,28 @@
     <Compile Include="src\Event.cs" />
     <Compile Include="src\Messages\Message.cs" />
     <Compile Include="src\Messages\MessageDataProcessor.cs" />
+    <Compile Include="src\Parsing\Elemia\ElemiaEventParser.cs" />
+    <Compile Include="src\Parsing\Elemia\RawDataParser.cs" />
+    <Compile Include="src\Parsing\Elemia\TextDataParser.cs" />
+    <Compile Include="src\Parsing\GustEventParser.cs" />
+    <Compile Include="src\Parsing\Iris_2\Iris2Parser.cs" />
+    <Compile Include="src\Parsing\Iris_3\Iris3Parser.cs" />
+    <Compile Include="src\Parsing\Khemia_1\Khemia1Parser.cs" />
+    <Compile Include="src\Parsing\Khemia_2\Khemia2Parser.cs" />
+    <Compile Include="src\Parsing\Metafalica\MetafalicaEventParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="resources\profiles\Elemia\CharacterNames.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="resources\profiles\Elemia\PortraitPositions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\profiles\Elemia\TextboxTypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\EndianBinaryStreams.dll" />
