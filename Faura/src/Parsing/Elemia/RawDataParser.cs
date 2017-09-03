@@ -16,7 +16,6 @@ namespace Faura.src.Parsing.Elemia
             Event ev = new Event();
 
             ReadMessages(reader, ev);
-            FindFirstCommand(reader);
             ReadCommands(reader, ev);
 
             return ev;
@@ -67,7 +66,17 @@ namespace Faura.src.Parsing.Elemia
 
         private void ReadCommands(EndianBinaryReader reader, Event ev)
         {
+            // The command block stores an int32* to the end of the event, some commands to run after
+            // the event finishes.
+            uint endPtrSize = reader.ReadUInt32();
+            // We can use this value to calculate when to stop reading the bulk of the commands.
+            // We subtract 1 from endPtrSize because it includes the int32* itself.
+            uint endOffset = ((endPtrSize - 1) * 4) + (uint)reader.BaseStream.Position;
 
+            while (reader.BaseStream.Position > endOffset)
+            {
+
+            }
         }
 
         private void Debug_WriteMessages(string path, Event ev)
@@ -94,18 +103,6 @@ namespace Faura.src.Parsing.Elemia
             while (test <= 1082220674)
             {
                 if (reader.PeekReadUInt32() >= 1082220674)
-                    test = reader.ReadUInt32();
-                else
-                    break;
-            }
-        }
-
-        private void FindFirstCommand(EndianBinaryReader reader)
-        {
-            uint test = reader.PeekReadUInt32();
-            while (test <= 2147418112)
-            {
-                if (reader.PeekReadUInt32() <= 2147418112)
                     test = reader.ReadUInt32();
                 else
                     break;
