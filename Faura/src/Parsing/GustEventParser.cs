@@ -12,9 +12,10 @@ namespace Faura.src.Parsing
     public abstract class GustEventParser
     {
         protected Dictionary<uint, string> TextboxTypes;
-        protected Dictionary<uint, string> CharacterMessageIDs;
+        protected Dictionary<uint, string> SpriteIDs;
         protected Dictionary<uint, string> CharacterNameIDs;
         protected Dictionary<uint, string> CharacterEventIDs;
+        protected Dictionary<uint, string> PortraitIDs;
         protected Dictionary<uint, string> PortraitPositionIDs;
         protected Dictionary<uint, string> MovieIDs;
         protected Dictionary<uint, string> BackgroundIDs;
@@ -54,8 +55,14 @@ namespace Faura.src.Parsing
                     case "characternames":
                         CharacterNameIDs = JsonConvert.DeserializeObject<Dictionary<uint, string>>(File.ReadAllText(str));
                         break;
+                    case "spriteids":
+                        SpriteIDs = JsonConvert.DeserializeObject<Dictionary<uint, string>>(File.ReadAllText(str));
+                        break;
                     case "portraitpositions":
                         PortraitPositionIDs = JsonConvert.DeserializeObject<Dictionary<uint, string>>(File.ReadAllText(str));
+                        break;
+                    case "portraitids":
+                        PortraitIDs = JsonConvert.DeserializeObject<Dictionary<uint, string>>(File.ReadAllText(str));
                         break;
                 }
             }

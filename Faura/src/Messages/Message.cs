@@ -11,7 +11,7 @@ namespace Faura.src
     {
         public string TextboxType { get; set; }
         public string CharacterName { get; set; }
-        public string CharacterID { get; set; }
+        public string SpriteOrPortraitID { get; set; }
         public string PortraitPosition { get; set; }
         public string MessageData { get; set; }
 
