@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Faura.src;
-using System.IO;
-using Faura.src.Parsing.Elemia;
 
 namespace Faura
 {
@@ -13,9 +10,7 @@ namespace Faura
     {
         static void Main(string[] args)
         {
-            ElemiaEventParser parser = new ElemiaEventParser();
-            parser.ParseRawData(@"D:\Ar Tonelico\gust-tools-v.0.7.1.1-x64\Elemia_RPK\Event\1.evd");
-            //Event ev = new Event(args[0]);
+            Event ev = new Event(args[0]);
             //ShowHelp();
         }
 

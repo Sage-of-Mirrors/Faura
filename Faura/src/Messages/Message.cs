@@ -4,45 +4,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameFormatReader.Common;
+using Newtonsoft.Json;
 
-namespace Faura.src
+namespace Faura.Messages
 {
     public class Message
     {
-        public string TextboxType { get; set; }
-        public string CharacterName { get; set; }
-        public string SpriteOrPortraitID { get; set; }
-        public string PortraitPosition { get; set; }
-        public string MessageData { get; set; }
-
         private TextBoxType mBoxType;
-        private int mCharacterName;
+        private CharacterNameID mCharacterName;
         private int mCharacterID;
         private int mMessageIndex;
-        private short mPortraitPosition;
+        private PortraitPosition mPortraitPosition;
         private short mUnknown1;
         private int mMessageLength;
+        private string mMessageData;
 
-        public string mMessageData;
+        public string Name { get; set; }
+
+        public string TextboxType
+        {
+            get { return mBoxType.ToString(); }
+        }
+
+        public string CharacterName
+        {
+            get { return mCharacterName.ToString(); }
+        }
+
+        public string CharacterID
+        {
+            get { return mCharacterID.ToString(); }
+        }
+
+        public string PortraitPosition
+        {
+            get { return mPortraitPosition.ToString(); }
+        }
+
+        public string Text
+        {
+            get { return mMessageData; }
+        }
 
         public Message()
         {
 
         }
 
-
         public Message(EndianBinaryReader reader)
         {
             mBoxType = (TextBoxType)reader.ReadInt32();
-            mCharacterName = reader.ReadInt32();
+            mCharacterName = (CharacterNameID)reader.ReadInt32();
             mCharacterID = reader.ReadInt32();
             mMessageIndex = reader.ReadInt32();
-            mPortraitPosition = reader.ReadInt16();
+            Name = $"msg_{ mMessageIndex }";
+            mPortraitPosition = (PortraitPosition)reader.ReadInt16();
             mUnknown1 = reader.ReadInt16();
             mMessageLength = reader.ReadInt32();
 
             byte[] rawMessageData = reader.ReadBytes(mMessageLength);
-            mMessageData = MessageDataProcessor.DecodeBytes(rawMessageData);
+            mMessageData = MessageDataProcessor.DecodeBytes(rawMessageData).Trim();
 
             PadMessageReader(reader);
         }
@@ -50,13 +71,13 @@ namespace Faura.src
         public void Write(EndianBinaryWriter writer, int index)
         {
             writer.Write((int)mBoxType);
-            writer.Write(mCharacterName);
+            writer.Write((int)mCharacterName);
             writer.Write(mCharacterID);
             writer.Write(index);
-            writer.Write(mPortraitPosition);
+            writer.Write((int)mPortraitPosition);
             writer.Write(mUnknown1);
 
-            byte[] rawMessageData = MessageDataProcessor.EncodeString(mMessageData);
+            byte[] rawMessageData = MessageDataProcessor.EncodeString(Text);
 
             writer.Write(rawMessageData.Length);
             writer.Write(rawMessageData);
@@ -92,22 +113,5 @@ namespace Faura.src
                 writer.Write((byte)0);
             }
         }
-    }
-
-    public enum TextBoxType : int
-    {
-        NormalDialog = 0,
-        RoundedBubbly = 1,
-        FullPortrait = 2,
-        Unknown1 = 3,
-        TopCentered = 4,
-        BottomCentered = 5,
-        StretchedAcrossBottom = 6,
-        Invalid1 = 7,
-        BottomRight = 8,
-        PortraitAcrossBottom = 9,
-        BottomCentered2 = 10,
-        RoundedBubblyBottomCenter = 11,
-        CosmosphereCenterPortrait = 12
     }
 }
