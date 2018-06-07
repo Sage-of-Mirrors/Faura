@@ -34,28 +34,57 @@ namespace Faura.Messages
             
             if (initialDecoding.Contains("CLYL"))
             {
-                initialDecoding = initialDecoding.Replace("CLYL", "<CLY>");
+                initialDecoding = initialDecoding.Replace("CLYL", "<YLW>");
             }
 
             if (initialDecoding.Contains("CLEG"))
             {
-                initialDecoding = initialDecoding.Replace("CLEG", "<CLG>");
+                initialDecoding = initialDecoding.Replace("CLEG", "<GRN>");
             }
 
             if (initialDecoding.Contains("CLRE"))
             {
-                initialDecoding = initialDecoding.Replace("CLRE", "<CLR>");
+                initialDecoding = initialDecoding.Replace("CLRE", "<RED>");
+            }
+
+            if (initialDecoding.Contains("CLR1"))
+            {
+                initialDecoding = initialDecoding.Replace("CLR1", "<RD2>");
+            }
+
+            if (initialDecoding.Contains("CLBR"))
+            {
+                initialDecoding = initialDecoding.Replace("CLBR", "<BRN>");
+            }
+
+            if (initialDecoding.Contains("CLBL"))
+            {
+                initialDecoding = initialDecoding.Replace("CLBL", "<BLU>");
             }
 
             if (initialDecoding.Contains("CLNR"))
             {
-                initialDecoding = initialDecoding.Replace("CLNR", "<CLN>");
+                initialDecoding = initialDecoding.Replace("CLNR", "<WHT>");
             }
 
             if (initialDecoding.Contains("#0"))
             {
                 initialDecoding = initialDecoding.Replace("#0", "<HYM>");
+            }
+
+            if (initialDecoding.Contains("#1"))
+            {
+                initialDecoding = initialDecoding.Replace("#1", "<FT2>");
+            }
+
+            if (initialDecoding.Contains("##"))
+            {
                 initialDecoding = initialDecoding.Replace("##", "<NRM>");
+            }
+
+            if (initialDecoding.Contains("CR"))
+            {
+                initialDecoding = initialDecoding.Replace("CR", "<BR>");
             }
 
             return initialDecoding.Trim('\0').Normalize(NormalizationForm.FormKC);
@@ -92,24 +121,46 @@ namespace Faura.Messages
 
                 switch (code)
                 {
-                    case "CLY":
+                    case "YLW":
                         stringBytes.AddRange(Ascii.GetBytes("CLYL"));
                         break;
-                    case "CLG":
+                    case "GRN":
                         stringBytes.AddRange(Ascii.GetBytes("CLEG"));
                         break;
-                    case "CLR":
+                    case "RED":
                         stringBytes.AddRange(Ascii.GetBytes("CLRE"));
                         break;
-                    case "CLN":
+                    case "RD2":
+                        stringBytes.AddRange(Ascii.GetBytes("CLR1"));
+                        break;
+                    case "WHT":
                         stringBytes.AddRange(Ascii.GetBytes("CLNR"));
                         break;
+                    case "BRN":
+                        stringBytes.AddRange(Ascii.GetBytes("CLBR"));
+                        break;
+                    case "BLU":
+                        stringBytes.AddRange(Ascii.GetBytes("CLBL"));
+                        break;
+                    case "BR":
+                        stringBytes.AddRange(Ascii.GetBytes("CR"));
+                        break;
                     case "HYM":
-                        // Add Hymmnos code, #0
-                        stringBytes.Add((byte)'#');
-                        stringBytes.Add((byte)'0');
+                    case "FT2":
+                        if (code == "HYM")
+                        {
+                            // Add Hymmnos code, #0
+                            stringBytes.Add((byte)'#');
+                            stringBytes.Add((byte)'0');
+                        }
+                        else if (code == "FT2")
+                        {
+                            // Add font 2 code, #1
+                            stringBytes.Add((byte)'#');
+                            stringBytes.Add((byte)'1');
+                        }
 
-                        // Copy Hymmnos phrase into the buffer until we hit <, the start of <NRM> which ends the Hymmnos text
+                        // Copy phrase into the buffer until we hit <, the start of <NRM> which returns the text to normal font
                         curPos = i;
                         while (messageData[curPos] != '<')
                         {

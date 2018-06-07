@@ -60,6 +60,14 @@ namespace Faura.Messages
 
         public Message(EndianBinaryReader reader)
         {
+            int msgBeginTest = reader.PeekReadInt32();
+            while (msgBeginTest > (int)TextBoxType.COSMOSPHERECENTERPORTRAIT || msgBeginTest < 0)
+            {
+                msgBeginTest = reader.ReadInt32();
+                if (msgBeginTest <= (int)TextBoxType.COSMOSPHERECENTERPORTRAIT && msgBeginTest >= 0)
+                    reader.BaseStream.Position -= 4;
+            }
+
             mBoxType = (TextBoxType)reader.ReadInt32();
             mCharacterName = (CharacterNameID)reader.ReadInt32();
             mCharacterID = reader.ReadInt32();
