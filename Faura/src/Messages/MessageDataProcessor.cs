@@ -10,7 +10,22 @@ namespace Faura.Messages
     public static class MessageDataProcessor
     {
         private static Encoding ShiftJis = Encoding.GetEncoding(932);
-        private static Encoding Unicode = Encoding.Unicode;
+        private static Encoding Ascii = Encoding.ASCII;
+
+        private static ushort[] halftofull = new ushort[95] {
+        0x8140, 0x8149, 0x8168, 0x8194, 0x8190, 0x8193, 0x8195, 0x8166,
+        0x8169, 0x816A, 0x8196, 0x817B, 0x8143, 0x817C, 0x8144, 0x815E,
+        0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255, 0x8256,
+        0x8257, 0x8258, 0x8146, 0x8147, 0x8183, 0x8181, 0x8184, 0x8148,
+        0x8197, 0x8260, 0x8261, 0x8262, 0x8263, 0x8264, 0x8265, 0x8266,
+        0x8267, 0x8268, 0x8269, 0x826A, 0x826B, 0x826C, 0x826D, 0x826E,
+        0x826F, 0x8270, 0x8271, 0x8272, 0x8273, 0x8274, 0x8275, 0x8276,
+        0x8277, 0x8278, 0x8279, 0x816D, 0x818F, 0x816E, 0x814F, 0x8151,
+        0x8165, 0x8281, 0x8282, 0x8283, 0x8284, 0x8285, 0x8286, 0x8287,
+        0x8288, 0x8289, 0x828A, 0x828B, 0x828C, 0x828D, 0x828E, 0x828F,
+        0x8290, 0x8291, 0x8292, 0x8293, 0x8294, 0x8295, 0x8296, 0x8297,
+        0x8298, 0x8299, 0x829A, 0x816F, 0x8162, 0x8170, 0x8160
+        };
 
         public static string DecodeBytes(byte[] messageData)
         {
@@ -48,6 +63,79 @@ namespace Faura.Messages
 
         public static byte[] EncodeString(string messageData)
         {
+            List<byte> stringBytes = new List<byte>();
+
+            for (int i = 0; i < messageData.Length; i++)
+            {
+                // If this char isn't <, then we just convert it and put it into the buffer
+                if (messageData[i] != '<')
+                {
+                    byte[] charBytes = BitConverter.GetBytes(halftofull[messageData[i] - 32]);
+                    stringBytes.AddRange(new byte[] { charBytes[1], charBytes[0] });
+
+                    continue;
+                }
+
+                // Get the control code's chars
+                List<char> ctrlCode = new List<char>();
+                int curPos = i + 1;
+                while (messageData[curPos] != '>')
+                {
+                    ctrlCode.Add(messageData[curPos]);
+                    curPos++;
+                }
+
+                // Make a string from the chars for easy comparison
+                string code = new string(ctrlCode.ToArray());
+                // Remove the code from the message data, we're done reading it
+                messageData = messageData.Remove(i, code.Length + 2);
+
+                switch (code)
+                {
+                    case "CLY":
+                        stringBytes.AddRange(Ascii.GetBytes("CLYL"));
+                        break;
+                    case "CLG":
+                        stringBytes.AddRange(Ascii.GetBytes("CLEG"));
+                        break;
+                    case "CLR":
+                        stringBytes.AddRange(Ascii.GetBytes("CLRE"));
+                        break;
+                    case "CLN":
+                        stringBytes.AddRange(Ascii.GetBytes("CLNR"));
+                        break;
+                    case "HYM":
+                        // Add Hymmnos code, #0
+                        stringBytes.Add((byte)'#');
+                        stringBytes.Add((byte)'0');
+
+                        // Copy Hymmnos phrase into the buffer until we hit <, the start of <NRM> which ends the Hymmnos text
+                        curPos = i;
+                        while (messageData[curPos] != '<')
+                        {
+                            stringBytes.Add((byte)messageData[curPos]);
+                            curPos++;
+                        }
+
+                        // Add normal font code, ##
+                        stringBytes.Add((byte)'#');
+                        stringBytes.Add((byte)'#');
+
+                        // Remove <NRM> tag, we don't need it
+                        messageData = messageData.Remove(curPos, 5);
+                        i = curPos;
+                        break;
+                    default:
+                        break;
+                }
+
+                i--;
+            }
+
+            stringBytes.Add(0);
+            return stringBytes.ToArray();
+
+            /*
             string msgCopy = messageData;
             List<KeyValuePair<int, string>> excisedControlCodes = new List<KeyValuePair<int, string>>();
 
@@ -70,7 +158,7 @@ namespace Faura.Messages
             if (!wideMsg.EndsWith("\0"))
                 wideMsg += '\0';
 
-            return ShiftJis.GetBytes(wideMsg);
+            return ShiftJis.GetBytes(wideMsg);*/
         }
 
         private static KeyValuePair<int, string>[] CheckControlCode(string message, string code, out string messageWithoutCodes)
