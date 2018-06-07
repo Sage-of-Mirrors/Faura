@@ -21,29 +21,36 @@ namespace Faura.Messages
 
         public string Name { get; set; }
 
+        public string IsUsed { get; set; }
+
         public string TextboxType
         {
             get { return mBoxType.ToString(); }
+            set { mBoxType = (TextBoxType)MessageDataProcessor.EnumValueFromString(typeof(TextBoxType), value); }
         }
 
         public string CharacterName
         {
             get { return mCharacterName.ToString(); }
+            set { mCharacterName = (CharacterNameID)MessageDataProcessor.EnumValueFromString(typeof(CharacterNameID), value); }
         }
 
         public string CharacterID
         {
             get { return mCharacterID.ToString(); }
+            set { mCharacterID = Convert.ToInt32(value); }
         }
 
         public string PortraitPosition
         {
             get { return mPortraitPosition.ToString(); }
+            set { mPortraitPosition = (PortraitPosition)MessageDataProcessor.EnumValueFromString(typeof(PortraitPosition), value); }
         }
 
         public string Text
         {
             get { return mMessageData; }
+            set { mMessageData = value; }
         }
 
         public Message()
@@ -58,6 +65,7 @@ namespace Faura.Messages
             mCharacterID = reader.ReadInt32();
             mMessageIndex = reader.ReadInt32();
             Name = $"msg_{ mMessageIndex }";
+            IsUsed = "False";
             mPortraitPosition = (PortraitPosition)reader.ReadInt16();
             mUnknown1 = reader.ReadInt16();
             mMessageLength = reader.ReadInt32();
@@ -74,8 +82,8 @@ namespace Faura.Messages
             writer.Write((int)mCharacterName);
             writer.Write(mCharacterID);
             writer.Write(index);
-            writer.Write((int)mPortraitPosition);
-            writer.Write(mUnknown1);
+            writer.Write((short)mPortraitPosition);
+            writer.Write((short)1);
 
             byte[] rawMessageData = MessageDataProcessor.EncodeString(Text);
 
@@ -87,7 +95,7 @@ namespace Faura.Messages
 
         private void PadMessageReader(EndianBinaryReader reader)
         {
-            // Pad up to a 32 byte alignment
+            // Pad up to a 4 byte alignment
             // Formula: (x + (n-1)) & ~(n-1)
             long nextAligned = (reader.BaseStream.Position + (4 - 1)) & ~(4 - 1);
 
@@ -102,7 +110,7 @@ namespace Faura.Messages
 
         private void PadMessageWriter(EndianBinaryWriter writer)
         {
-            // Pad up to a 32 byte alignment
+            // Pad up to a 4 byte alignment
             // Formula: (x + (n-1)) & ~(n-1)
             long nextAligned = (writer.BaseStream.Length + (4 - 1)) & ~(4 - 1);
 
