@@ -87,6 +87,106 @@ namespace Faura.Messages
                 initialDecoding = initialDecoding.Replace("CR", "<BR>");
             }
 
+            if (initialDecoding.Contains("IM00"))
+            {
+                initialDecoding = initialDecoding.Replace("IM00", "<X1>");
+            }
+
+            if (initialDecoding.Contains("IM01"))
+            {
+                initialDecoding = initialDecoding.Replace("IM01", "<O1>");
+            }
+
+            if (initialDecoding.Contains("IM02"))
+            {
+                initialDecoding = initialDecoding.Replace("IM02", "<SQR1>");
+            }
+
+            if (initialDecoding.Contains("IM03"))
+            {
+                initialDecoding = initialDecoding.Replace("IM03", "<TRI1>");
+            }
+
+            if (initialDecoding.Contains("IM04"))
+            {
+                initialDecoding = initialDecoding.Replace("IM04", "<DUPDWN>");
+            }
+
+            if (initialDecoding.Contains("IM05"))
+            {
+                initialDecoding = initialDecoding.Replace("IM05", "<DLFTRT>");
+            }
+
+            if (initialDecoding.Contains("IM06"))
+            {
+                initialDecoding = initialDecoding.Replace("IM06", "<DPAD>");
+            }
+
+            if (initialDecoding.Contains("IM07"))
+            {
+                initialDecoding = initialDecoding.Replace("IM07", "<L11>");
+            }
+
+            if (initialDecoding.Contains("IM08"))
+            {
+                initialDecoding = initialDecoding.Replace("IM08", "<R11>");
+            }
+
+            if (initialDecoding.Contains("IM09"))
+            {
+                initialDecoding = initialDecoding.Replace("IM09", "<SELECT>");
+            }
+
+            if (initialDecoding.Contains("IM0B"))
+            {
+                initialDecoding = initialDecoding.Replace("IM0B", "<X2>");
+            }
+
+            if (initialDecoding.Contains("B×"))
+            {
+                initialDecoding = initialDecoding.Replace("B×", "<X3>");
+            }
+
+            if (initialDecoding.Contains("B○"))
+            {
+                initialDecoding = initialDecoding.Replace("B○", "<O2>");
+            }
+
+            if (initialDecoding.Contains("B□"))
+            {
+                initialDecoding = initialDecoding.Replace("B□", "<SQR2>");
+            }
+
+            if (initialDecoding.Contains("B△"))
+            {
+                initialDecoding = initialDecoding.Replace("B△", "<TRI2>");
+            }
+
+            if (initialDecoding.Contains("BUD"))
+            {
+                initialDecoding = initialDecoding.Replace("BUD", "<DUPDWN2>");
+            }
+
+            if (initialDecoding.Contains("BLR"))
+            {
+                initialDecoding = initialDecoding.Replace("BLR", "<DLFTRT2>");
+            }
+
+            if (initialDecoding.Contains("BCS"))
+            {
+                initialDecoding = initialDecoding.Replace("BCS", "<DPAD2>");
+            }
+
+            if (initialDecoding.Contains("BL1"))
+            {
+                initialDecoding = initialDecoding.Replace("BL1", "<L12>");
+            }
+
+            if (initialDecoding.Contains("BL2"))
+            {
+                initialDecoding = initialDecoding.Replace("BL2", "<L22>");
+            }
+
             return initialDecoding.Trim('\0').Normalize(NormalizationForm.FormKC);
         }
 
