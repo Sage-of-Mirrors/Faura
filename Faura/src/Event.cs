@@ -17,6 +17,8 @@ namespace Faura
         private List<Message> mMessageList;
         private List<Command> mCommandList;
 
+        private Command[] CommandTemplates;
+
         public Event()
         {
 
@@ -24,17 +26,13 @@ namespace Faura
 
         public Event(string filePath, string outPath, string cmdVersion)
         {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine($"The file \"{ filePath }\" does not exist!");
-                return;
-            }
-
             mMessageList = new List<Message>();
+            mCommandList = new List<Command>();
             string fileExt = Path.GetExtension(filePath);
 
             string actualVersion = cmdVersion;
             Enum[] versionEnums = LoadVersionEnums(filePath, fileExt == ".txt" ? true : false, cmdVersion, out actualVersion);
+            CommandTemplates = LoadVersionTemplates(actualVersion);
 
             if (fileExt == ".evd")
             {
@@ -66,6 +64,14 @@ namespace Faura
                     mMessageList.Add(new Message(reader));
 
                 int unknownInt = reader.ReadInt32();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    uint cmdID = reader.ReadUInt32();
+                    Command cmd = CommandTemplates.First(x => x.ID == cmdID);
+                    cmd.ReadBinary(reader);
+                    mCommandList.Add(cmd);
+                }
             }
         }
 
@@ -164,6 +170,22 @@ namespace Faura
             }
 
             return EnumLoader.GetEnumsFromVersion(version);
+        }
+
+        private Command[] LoadVersionTemplates(string version)
+        {
+            string jsonString = "";
+
+            switch(version)
+            {
+                case "metafalica":
+                    jsonString = Properties.Resources.metafalica;
+                    break;
+                default:
+                    throw new Exception($"Unknown version \"{ version }\"!");
+            }
+
+            return JsonConvert.DeserializeObject<Command[]>(jsonString);
         }
 
         /*private void Debug_DumpMessages()

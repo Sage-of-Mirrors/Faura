@@ -1,0 +1,538 @@
+[
+  {
+    "Name": "func_F009",
+    "ID": "2147479561",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F010",
+    "ID": "2147479568",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+  
+  {
+    "Name": "SetPortrait",
+    "ID": "2147479583",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "portraitSlot",
+        "Value": "0",
+        "HasEnum": "true",
+        "EnumName": "PortraitSlot"
+      },
+      {
+        "Name": "portraitID",
+        "Value": "0",
+        "HasEnum": "true",
+        "EnumName": "PortraitID"
+      }
+    ]
+  },
+  
+  {
+    "Name": "ClearPortrait",
+    "ID": "2147479584",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "portraitSlot",
+        "Value": "0",
+        "HasEnum": "true",
+        "EnumName": "PortraitSlot"
+      },
+      {
+        "Name": "speed",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F028",
+    "ID": "2147479592",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F02C",
+    "ID": "2147479596",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F030",
+    "ID": "2147479600",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "FadeScreen",
+    "ID": "2147479601",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "ColorOverlay",
+    "ID": "2147479605",
+    "ParameterCount": "5",
+    "Variables": [
+      {
+        "Name": "red",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "green",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "blue",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "alpha",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F03C",
+    "ID": "2147479612",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "DisplayDialogSeries",
+    "ID": "2147479653",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "indexStart",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "indexEnd",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "DisplayTemporaryDialog",
+    "ID": "2147479657",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "index",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F06A",
+    "ID": "2147479658",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+  
+  {
+    "Name": "SetUI",
+    "ID": "2147479669",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "CreatePosition",
+    "ID": "2147479697",
+    "ParameterCount": "3",
+    "Variables": [
+      {
+        "Name": "xCoord",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "yCoord",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "zCoord",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F097",
+    "ID": "2147479703",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F0A3",
+    "ID": "2147479715",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetBackground",
+    "ID": "2147479717",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetActorAnimation",
+    "ID": "2147479729",
+    "ParameterCount": "3",
+    "Variables": [
+      {
+        "Name": "actorID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "animationID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "isMirrored",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F0BD",
+    "ID": "2147479741",
+    "ParameterCount": "4",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "unk4",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetSpriteScale",
+    "ID": "2147479747",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "actorID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "scale",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetSpriteID",
+    "ID": "2147479748",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "spriteID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetActorID",
+    "ID": "2147479749",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "spriteID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "MoveToPosition",
+    "ID": "2147479750",
+    "ParameterCount": "3",
+    "Variables": [
+      {
+        "Name": "actorID",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "speed",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "arcHeight",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F0CD",
+    "ID": "2147479757",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+  
+  {
+    "Name": "func_F0D0",
+    "ID": "2147479760",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetCameraPosition",
+    "ID": "2147479762",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+  
+  {
+    "Name": "PlaySound",
+    "ID": "2147479793",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "SetMusic",
+    "ID": "2147479819",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+  
+  {
+    "Name": "func_F10F",
+    "ID": "2147479823",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+  
+  {
+    "Name": "Wait",
+    "ID": "2147479848",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+	  {
+        "Name": "time",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+]
