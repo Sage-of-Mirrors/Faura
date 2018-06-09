@@ -7,19 +7,22 @@ using System.IO;
 using GameFormatReader.Common;
 using Newtonsoft.Json;
 using Faura.Messages;
+using Faura.Commands;
+using Faura.Enums;
 
 namespace Faura
 {
     public class Event
     {
         private List<Message> mMessageList;
+        private List<Command> mCommandList;
 
         public Event()
         {
 
         }
 
-        public Event(string filePath)
+        public Event(string filePath, string outPath, string cmdVersion)
         {
             if (!File.Exists(filePath))
             {
@@ -30,15 +33,18 @@ namespace Faura
             mMessageList = new List<Message>();
             string fileExt = Path.GetExtension(filePath);
 
+            string actualVersion = cmdVersion;
+            Enum[] versionEnums = LoadVersionEnums(filePath, fileExt == ".txt" ? true : false, cmdVersion, out actualVersion);
+
             if (fileExt == ".evd")
             {
                 LoadEvd(filePath);
-                SaveTxt(filePath);
+                SaveTxt(filePath, actualVersion, versionEnums);
             }
 
             else if (fileExt == ".txt")
             {
-                LoadTxt(filePath);
+                LoadTxt(filePath, versionEnums);
                 SaveEvd(filePath);
             }
 
@@ -63,7 +69,7 @@ namespace Faura
             }
         }
 
-        private void LoadTxt(string filePath)
+        private void LoadTxt(string filePath, Enum[] enums)
         {
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string messageFileName = fileName + "_msg.txt";
@@ -93,13 +99,35 @@ namespace Faura
 
                 for (int i = 0; i < mMessageList.Count; i++)
                     mMessageList[i].Write(writer, i);
+
+                writer.Write((int)0);
+
+                foreach (Command com in mCommandList)
+                    com.WriteBinary(writer, null);
             }
         }
 
-        private void SaveTxt(string filePath)
+        private void SaveTxt(string filePath, string version, Enum[] enums)
         {
             string dir = Path.GetDirectoryName(filePath);
             string name = Path.GetFileNameWithoutExtension(filePath);
+
+            using (FileStream cmdWriter = new FileStream(Path.Combine(dir, name + ".txt"), FileMode.Create, FileAccess.Write))
+            {
+                StreamWriter strWriter = new StreamWriter(cmdWriter, Encoding.UTF8);
+                strWriter.AutoFlush = true;
+
+                strWriter.WriteLine("# Event dumped by Faura. Visit https://github.com/Sage-of-Mirrors/Faura for issues or contact @SageOfMirrors.");
+                strWriter.WriteLine($"# version { version }");
+
+                strWriter.WriteLine();
+
+                foreach (Command com in mCommandList)
+                    com.WriteString(strWriter, enums);
+
+                strWriter.WriteLine();
+                strWriter.Write("# EOF");
+            }
 
             using (FileStream msgWriter = new FileStream(Path.Combine(dir, name + "_msg.txt"), FileMode.Create, FileAccess.Write))
             {
@@ -109,6 +137,33 @@ namespace Faura
                 strWriter.AutoFlush = true;
                 strWriter.Write(jsonMsgs);
             }
+        }
+
+        private Enum[] LoadVersionEnums(string filePath, bool isTxt, string cmdVersion, out string version)
+        {
+            version = cmdVersion;
+
+            // If the input is a txt file, we'll get the version from the file itself
+            if (isTxt)
+            {
+                using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    StreamReader rdr = new StreamReader(file);
+
+                    string versionComment = rdr.ReadLine();
+                    while (!versionComment.ToLower().Contains("#version"))
+                    {
+                        if (rdr.EndOfStream)
+                            throw new Exception($"File \"{ filePath }\" did not contain a version comment (#version)!");
+
+                        versionComment = rdr.ReadLine();
+                    }
+
+                    version = versionComment.Split(' ')[1].ToLower();
+                }
+            }
+
+            return EnumLoader.GetEnumsFromVersion(version);
         }
 
         /*private void Debug_DumpMessages()

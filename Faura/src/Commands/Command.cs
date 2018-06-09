@@ -1,53 +1,48 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameFormatReader.Common;
+using System.IO;
 
-namespace Faura.src.Commands
+namespace Faura.Commands
 {
-    public abstract class Command
+    public struct Command
     {
-        public uint CommandID { get; set; }
-        public string CommandName { get; set; }
-        public List<uint> Arguments { get; set; }
+        public string Name { get; set; }
+        public uint ID { get; set; }
+        public int ParameterCount { get; set; }
 
-        public Command()
+        public Variable[] Variables { get; set; }
+
+        public void ReadString(string commandStr)
         {
-            CommandName = "";
-            Arguments = new List<uint>();
+
         }
 
-        public abstract void ReadRawCommand(EndianBinaryReader reader);
-
-        public abstract void ReadTextCommand(string line);
-
-        public void WriteRawCommand(EndianBinaryWriter writer)
+        public void ReadBinary(EndianBinaryReader reader)
         {
-            writer.Write(CommandID);
-
-            for (int i = 0; i < Arguments.Count; i++)
-                writer.Write(Arguments[i]);
+            for (int i = 0; i < ParameterCount; i++)
+                Variables[i].Value = reader.ReadInt32();
         }
 
-        public void WriteTextCommand(EndianBinaryWriter writer)
+        public void WriteString(StreamWriter writer, Enum[] enums)
         {
-            string command = $"{ CommandName }(";
+            writer.Write($"{ Name } ");
 
-            for (int i = 0; i > Arguments.Count; i++)
-            {
-                command += $"{ Arguments[i] }";
+            foreach (Variable var in Variables)
+                var.WriteString(writer, enums);
 
-                if (i != Arguments.Count - 1)
-                    command += ", ";
-            }
+            writer.Write("\n");
+        }
 
-            command += ')';
+        public void WriteBinary(EndianBinaryWriter writer, Enum[] enums)
+        {
+            writer.Write(ID);
 
-            writer.Write(command.ToCharArray());
-            writer.Write('\n');
+            foreach (Variable var in Variables)
+                writer.Write(var.Value);
         }
     }
 }
