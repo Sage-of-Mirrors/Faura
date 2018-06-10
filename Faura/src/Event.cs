@@ -63,12 +63,13 @@ namespace Faura
                 for (int i = 0; i < messageCount; i++)
                     mMessageList.Add(new Message(reader));
 
-                int unknownInt = reader.ReadInt32();
+                int commandBlockSize = reader.ReadInt32() * 4;
+                long startPos = reader.BaseStream.Position;
 
-                for (int i = 0; i < 10; i++)
+                while(reader.BaseStream.Position - startPos < commandBlockSize)
                 {
                     uint cmdID = reader.ReadUInt32();
-                    Command cmd = CommandTemplates.First(x => x.ID == cmdID);
+                    Command cmd = new Command(CommandTemplates.First(x => x.ID == cmdID));
                     cmd.ReadBinary(reader);
                     mCommandList.Add(cmd);
                 }
@@ -90,6 +91,27 @@ namespace Faura
 
             string json = File.ReadAllText(messageFilePath);
             mMessageList.AddRange(JsonConvert.DeserializeObject<Message[]>(json));
+
+            using (FileStream data = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                StreamReader reader = new StreamReader(data);
+
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+
+                    if (line.Length == 0 || line[0] == '#' || line[0] == ' ')
+                        continue;
+
+                    string[] commandDisassembly = line.Split(' ');
+
+                    Command cmd = new Command(CommandTemplates.First(x => x.Name == commandDisassembly[0]));
+                    for (int i = 0; i < cmd.ParameterCount; i++)
+                        cmd.Variables[i].SetValue(commandDisassembly[i + 1]);
+
+                    mCommandList.Add(cmd);
+                }
+            }
         }
 
         private void SaveEvd(string filePath)
@@ -107,9 +129,14 @@ namespace Faura
                     mMessageList[i].Write(writer, i);
 
                 writer.Write((int)0);
+                long curOffset = writer.BaseStream.Position;
 
                 foreach (Command com in mCommandList)
                     com.WriteBinary(writer, null);
+
+                long size = writer.BaseStream.Position - curOffset;
+                writer.BaseStream.Seek(curOffset - 4, SeekOrigin.Begin);
+                writer.Write((int)size / 4);
             }
         }
 
@@ -129,7 +156,21 @@ namespace Faura
                 strWriter.WriteLine();
 
                 foreach (Command com in mCommandList)
-                    com.WriteString(strWriter, enums);
+                {
+                    if (com.Name == "DisplayDialogSeries")
+                    {
+                        strWriter.Write($"{ com.Name } ");
+                        strWriter.Write($"{ mMessageList[com.Variables[0].Value].Name } ");
+                        strWriter.Write($"{ mMessageList[com.Variables[1].Value].Name } \n");
+                    }
+                    else if (com.Name == "DisplayTemporaryDialog")
+                    {
+                        strWriter.Write($"{ com.Name } ");
+                        strWriter.Write($"{ mMessageList[com.Variables[0].Value].Name } \n");
+                    }
+                    else
+                        com.WriteString(strWriter, enums);
+                }
 
                 strWriter.WriteLine();
                 strWriter.Write("# EOF");
@@ -157,7 +198,7 @@ namespace Faura
                     StreamReader rdr = new StreamReader(file);
 
                     string versionComment = rdr.ReadLine();
-                    while (!versionComment.ToLower().Contains("#version"))
+                    while (!versionComment.ToLower().Contains("# version"))
                     {
                         if (rdr.EndOfStream)
                             throw new Exception($"File \"{ filePath }\" did not contain a version comment (#version)!");
@@ -165,7 +206,7 @@ namespace Faura
                         versionComment = rdr.ReadLine();
                     }
 
-                    version = versionComment.Split(' ')[1].ToLower();
+                    version = versionComment.Split(' ')[2].ToLower();
                 }
             }
 

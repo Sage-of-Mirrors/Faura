@@ -14,9 +14,26 @@ namespace Faura.Commands
         public bool HasEnum { get; set; }
         public string EnumName { get; set; }
 
+        public Variable(Variable src)
+        {
+            Name = src.Name;
+            Value = src.Value;
+            HasEnum = src.HasEnum;
+            EnumName = src.EnumName;
+        }
+
+        public void SetValue(string value)
+        {
+            if (true)
+            {
+                Value = Convert.ToInt32(value);
+                return;
+            }
+        }
+
         public void WriteString(StreamWriter writer, Enum[] enums)
         {
-            if (!HasEnum)
+            if (true)
             {
                 writer.Write($"{ Value } ");
                 return;

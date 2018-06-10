@@ -16,6 +16,17 @@ namespace Faura.Commands
 
         public Variable[] Variables { get; set; }
 
+        public Command(Command src)
+        {
+            Name = src.Name;
+            ID = src.ID;
+            ParameterCount = src.ParameterCount;
+
+            Variables = new Variable[ParameterCount];
+            for (int i = 0; i < ParameterCount; i++)
+                Variables[i] = new Variable(src.Variables[i]);
+        }
+
         public void ReadString(string commandStr)
         {
 

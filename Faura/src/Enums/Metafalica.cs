@@ -241,9 +241,9 @@ namespace Faura.Enums.Metafalica
 
     public enum PortraitSlot : int
     {
-        LEFT1 = 0,
-        LEFT2 = 1,
-        CENTER = 2,
+        CENTER = 0,
+        LEFT1 = 1,
+        LEFT2 = 2,
         RIGHT1 = 3,
         RIGHT2 = 4
     }
