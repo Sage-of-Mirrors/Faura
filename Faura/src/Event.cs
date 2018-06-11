@@ -162,11 +162,15 @@ namespace Faura
                         strWriter.Write($"{ com.Name } ");
                         strWriter.Write($"{ mMessageList[com.Variables[0].Value].Name } ");
                         strWriter.Write($"{ mMessageList[com.Variables[1].Value].Name } \n");
+
+                        for (int i = com.Variables[0].Value; i <= com.Variables[1].Value; i++)
+                            mMessageList[i].IsUsed = "True";
                     }
                     else if (com.Name == "DisplayTemporaryDialog")
                     {
                         strWriter.Write($"{ com.Name } ");
                         strWriter.Write($"{ mMessageList[com.Variables[0].Value].Name } \n");
+                        mMessageList[com.Variables[0].Value].IsUsed = "True";
                     }
                     else
                         com.WriteString(strWriter, enums);
