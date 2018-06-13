@@ -157,6 +157,8 @@ namespace Faura
 
                 foreach (Command com in mCommandList)
                 {
+                    if (com.Name == "CreatePosition")
+                        strWriter.WriteLine();
                     if (com.Name == "DisplayDialogSeries")
                     {
                         strWriter.Write($"{ com.Name } ");
