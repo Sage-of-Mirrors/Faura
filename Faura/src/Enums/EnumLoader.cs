@@ -24,9 +24,14 @@ namespace Faura.Enums
             List<Enum> metaEnums = new List<Enum>();
 
             metaEnums.Add(Metafalica.CharacterNameID.LUCA);
+            metaEnums.Add(Metafalica.CharacterID.ADVENTURER_A);
             metaEnums.Add(Metafalica.PortraitPosition.CENTERED);
             metaEnums.Add(Metafalica.PortraitSlot.LEFT1);
-            metaEnums.Add(Metafalica.TextBoxType.NORMALDIALOG);
+            metaEnums.Add(Metafalica.TextBoxType.NORMAL_DIALOG);
+            metaEnums.Add(Metafalica.MusicID.dummy);
+            metaEnums.Add(Metafalica.SoundID.dummy);
+            metaEnums.Add(Metafalica.PortraitID.NONE);
+            metaEnums.Add(Metafalica.EnemyID.dummy);
 
             return metaEnums.ToArray();
         }

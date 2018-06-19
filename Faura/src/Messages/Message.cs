@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameFormatReader.Common;
 using Newtonsoft.Json;
+using Faura.Enums.Metafalica;
 
 namespace Faura.Messages
 {
@@ -12,7 +13,7 @@ namespace Faura.Messages
     {
         private TextBoxType mBoxType;
         private CharacterNameID mCharacterName;
-        private int mCharacterID;
+        private int mCharacterIDOrPortrait;
         private int mMessageIndex;
         private PortraitPosition mPortraitPosition;
         private short mUnknown1;
@@ -37,8 +38,20 @@ namespace Faura.Messages
 
         public string CharacterID
         {
-            get { return mCharacterID.ToString(); }
-            set { mCharacterID = Convert.ToInt32(value); }
+            get
+            {
+                if (mBoxType == TextBoxType.FULL_PORTRAIT)
+                    return ((PortraitID)mCharacterIDOrPortrait).ToString();
+                else
+                    return ((CharacterID)mCharacterIDOrPortrait).ToString();
+            }
+            set
+            {
+                if (mBoxType == TextBoxType.FULL_PORTRAIT)
+                    mCharacterIDOrPortrait = Convert.ToInt32(MessageDataProcessor.EnumValueFromString(typeof(PortraitID), value));
+                else
+                    mCharacterIDOrPortrait = Convert.ToInt32(MessageDataProcessor.EnumValueFromString(typeof(CharacterID), value));
+            }
         }
 
         public string PortraitPosition
@@ -58,22 +71,23 @@ namespace Faura.Messages
 
         }
 
-        public Message(EndianBinaryReader reader)
+        public Message(EndianBinaryReader reader, int index)
         {
+            Name = $"msg_{ index }";
+            IsUsed = "False";
+
             int msgBeginTest = reader.PeekReadInt32();
-            while (msgBeginTest > (int)TextBoxType.COSMOSPHERECENTERPORTRAIT || msgBeginTest < 0)
+            while (msgBeginTest > (int)TextBoxType.COSMOSPHERE_CENTER_PORTRAIT || msgBeginTest < 0)
             {
                 msgBeginTest = reader.ReadInt32();
-                if (msgBeginTest <= (int)TextBoxType.COSMOSPHERECENTERPORTRAIT && msgBeginTest >= 0)
+                if (msgBeginTest <= (int)TextBoxType.COSMOSPHERE_CENTER_PORTRAIT && msgBeginTest >= 0)
                     reader.BaseStream.Position -= 4;
             }
 
             mBoxType = (TextBoxType)reader.ReadInt32();
             mCharacterName = (CharacterNameID)reader.ReadInt32();
-            mCharacterID = reader.ReadInt32();
+            mCharacterIDOrPortrait = reader.ReadInt32();
             mMessageIndex = reader.ReadInt32();
-            Name = $"msg_{ mMessageIndex }";
-            IsUsed = "False";
             mPortraitPosition = (PortraitPosition)reader.ReadInt16();
             mUnknown1 = reader.ReadInt16();
             mMessageLength = reader.ReadInt32();
@@ -88,7 +102,7 @@ namespace Faura.Messages
         {
             writer.Write((int)mBoxType);
             writer.Write((int)mCharacterName);
-            writer.Write(mCharacterID);
+            writer.Write(mCharacterIDOrPortrait);
             writer.Write(index);
             writer.Write((short)mPortraitPosition);
             writer.Write((short)1);

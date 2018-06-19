@@ -61,7 +61,7 @@ namespace Faura
 
                 int messageCount = reader.ReadInt32();
                 for (int i = 0; i < messageCount; i++)
-                    mMessageList.Add(new Message(reader));
+                    mMessageList.Add(new Message(reader, i));
 
                 int commandBlockSize = reader.ReadInt32() * 4;
                 long startPos = reader.BaseStream.Position;
@@ -106,8 +106,40 @@ namespace Faura
                     string[] commandDisassembly = line.Split(' ');
 
                     Command cmd = new Command(CommandTemplates.First(x => x.Name == commandDisassembly[0]));
+
+                    // We need to convert the message names to actual indices, if required
+                    if (cmd.Name == "DisplayDialogSeries")
+                    {
+                        int msg1, msg2;
+
+                        // We'll try to parse an int out of the string. Failing that, we'll search for the message name
+                        // in the message list.
+                        if (!int.TryParse(commandDisassembly[1], out msg1))
+                            msg1 = mMessageList.FindIndex(x => x.Name == commandDisassembly[1]);
+                        if (!int.TryParse(commandDisassembly[2], out msg2))
+                            msg2 = mMessageList.FindIndex(x => x.Name == commandDisassembly[2]);
+
+                        // Replace the original strings to make it easy for the processor to load
+                        commandDisassembly[1] = msg1.ToString();
+                        commandDisassembly[2] = msg2.ToString();
+                    }
+                    else if (cmd.Name == "DisplayTemporaryDialog")
+                    {
+                        int msg;
+
+                        if (!int.TryParse(commandDisassembly[1], out msg))
+                            msg = mMessageList.FindIndex(x => x.Name == commandDisassembly[1]);
+
+                        commandDisassembly[1] = msg.ToString();
+                    }
+
+                    if (cmd.Name == "func_F1E5")
+                    {
+
+                    }
+
                     for (int i = 0; i < cmd.ParameterCount; i++)
-                        cmd.Variables[i].SetValue(commandDisassembly[i + 1]);
+                        cmd.Variables[i].SetValue(commandDisassembly[i + 1], enums);
 
                     mCommandList.Add(cmd);
                 }

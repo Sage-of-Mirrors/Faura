@@ -564,8 +564,8 @@
       {
         "Name": "actorID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       },
       {
         "Name": "animationID",
@@ -690,8 +690,8 @@
       {
         "Name": "actorID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       },
       {
         "Name": "emoticonID",
@@ -749,8 +749,8 @@
       {
         "Name": "actorID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       },
       {
         "Name": "scale",
@@ -769,8 +769,8 @@
       {
         "Name": "spriteID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       }
     ]
   },
@@ -783,8 +783,8 @@
       {
         "Name": "spriteID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       }
     ]
   },
@@ -797,8 +797,8 @@
       {
         "Name": "actorID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
       },
       {
         "Name": "speed",
@@ -955,8 +955,8 @@
       {
         "Name": "id",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "SoundID"
       }
     ]
   },
@@ -1051,8 +1051,8 @@
       {
         "Name": "id",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "MusicID"
       }
     ]
   },
@@ -1159,8 +1159,8 @@
       {
         "Name": "enemyID",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "EnemyID"
       },
       {
         "Name": "unk3",

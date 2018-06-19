@@ -11,45 +11,25 @@ namespace Faura
     {
         static void Main(string[] args)
         {
-            /*using (FileStream strm = new FileStream(@"D:\Ar Tonelico\portrait_test\portrait_test.txt", FileMode.Open, FileAccess.Write))
+            using (FileStream stream = new FileStream(@"D:\Ar Tonelico\name_ids.txt", FileMode.Open))
             {
-                StreamWriter writer = new StreamWriter(strm);
-                writer.AutoFlush = true;
+                StreamReader reader = new StreamReader(stream);
 
-                writer.WriteLine("# version metafalica");
-                writer.WriteLine();
-
-                for (int i = 0; i < 500; i++)
+                using (FileStream outStream = new FileStream(@"D:\Ar Tonelico\name_enum.txt", FileMode.Create))
                 {
-                    writer.WriteLine("DisplayDialogSeries 0 0");
-                    writer.WriteLine("ClearPortrait 0 -10");
-                    writer.WriteLine($"SetPortrait 0 { i }");
+                    StreamWriter writer = new StreamWriter(outStream);
+                    writer.AutoFlush = true;
+                    writer.Write("public enum CharacterNameID\n{\n");
+
+                    while (!reader.EndOfStream)
+                    {
+                        string[] parts = reader.ReadLine().Split('=');
+                        writer.WriteLine($"\t{ parts[1].Replace(' ', '_').Replace("\'", "").ToUpper() } = { parts[0] },");
+                    }
+
+                    writer.Write("}");
                 }
-            }*/
-
-            /*using (FileStream strm = new FileStream(@"D:\Ar Tonelico\portrait_test\portrait_test_msg.txt", FileMode.Open, FileAccess.Write))
-            {
-                StreamWriter writer = new StreamWriter(strm);
-                writer.AutoFlush = true;
-
-                writer.WriteLine("[");
-
-                for (int i = 100; i < 200; i++)
-                {
-                    writer.WriteLine("\t{");
-
-                    writer.WriteLine("\t\t\"Name\": \"0\",");
-                    writer.WriteLine("\t\t\"TextboxType\": \"FullPortrait\",");
-                    writer.WriteLine("\t\t\"CharacterName\": \"Luca\",");
-                    writer.WriteLine($"\t\t\"CharacterID\": \"{ i }\",");
-                    writer.WriteLine($"\t\t\"PortraitPosition\": \"{ Faura.Enums.Metafalica.PortraitPosition.LEFT_CONVERSATION }\",");
-                    writer.WriteLine($"\t\t\"Text\": \"{ i }\"");
-
-                    writer.WriteLine("\t},");
-                }
-
-                writer.WriteLine("]");
-            }*/
+            }
 
             if (args.Length == 0 || args[0] == "-h" || args[0] == "--help")
             {

@@ -63,7 +63,6 @@
     <Compile Include="src\Enums\EnumLoader.cs" />
     <Compile Include="src\Enums\Metafalica.cs" />
     <Compile Include="src\Event.cs" />
-    <Compile Include="src\Messages\Enums.cs" />
     <Compile Include="src\Messages\Message.cs" />
     <Compile Include="src\Messages\MessageDataProcessor.cs" />
   </ItemGroup>
