@@ -27,11 +27,18 @@ namespace Faura.Enums.Metafalica
         CLOCHE = 1,
         JACQLI = 2,
         CROIX = 3,
+        LEGLIUS = 4,
+        AMARIE = 5,
         SHUN = 6,
+        COCONA = 7,
+        TARGANA = 10,
+        CHESTER = 15,
         BATZ = 16,
         REISHA = 17,
         FRELIA = 20,
         INFEL = 25,
+        CYNTHIA = 27,
+        DIVE_SHOP_LENLEN = 99
     }
 
     public enum PortraitSlot : int
