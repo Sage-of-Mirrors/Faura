@@ -23,6 +23,7 @@ namespace Faura.Enums.Metafalica
 
     public enum CharacterNameID : int
     {
+        NONE = -1,
         LUCA = 0,
         CLOCHE = 1,
         JACQLI = 2,
@@ -32,12 +33,14 @@ namespace Faura.Enums.Metafalica
         SHUN = 6,
         COCONA = 7,
         TARGANA = 10,
+        LAUDE = 13,
         CHESTER = 15,
         BATZ = 16,
         REISHA = 17,
         FRELIA = 20,
         INFEL = 25,
         CYNTHIA = 27,
+        SOOPE = 31,
         DIVE_SHOP_LENLEN = 99
     }
 

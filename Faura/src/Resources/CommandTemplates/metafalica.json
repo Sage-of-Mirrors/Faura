@@ -142,6 +142,26 @@
   },
 
   {
+    "Name": "func_F029",
+    "ID": "2147479593",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
     "Name": "func_F02C",
     "ID": "2147479596",
     "ParameterCount": "1",
@@ -276,6 +296,13 @@
   },
 
   {
+    "Name": "func_F03A",
+    "ID": "2147479610",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+
+  {
     "Name": "func_F03B",
     "ID": "2147479611",
     "ParameterCount": "0",
@@ -344,6 +371,13 @@
   },
 
   {
+    "Name": "func_F045",
+    "ID": "2147479621",
+    "ParameterCount": "0",
+    "Variables": []
+  },
+
+  {
     "Name": "func_F046",
     "ID": "2147479622",
     "ParameterCount": "2",
@@ -368,6 +402,32 @@
     "ID": "2147479623",
     "ParameterCount": "2",
     "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F04E",
+    "ID": "2147479630",
+    "ParameterCount": "3",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
       {
         "Name": "unk1",
         "Value": "0",
@@ -765,6 +825,26 @@
     "Variables": [
       {
         "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F0AC",
+    "ID": "2147479724",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "actorID",
+        "Value": "0",
+        "HasEnum": "true",
+        "EnumName": "CharacterID"
+      },
+      {
+        "Name": "unk2",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
@@ -1484,6 +1564,40 @@
   },
 
   {
+    "Name": "func_F0F9",
+    "ID": "2147479801",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F0FA",
+    "ID": "2147479802",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
     "Name": "func_F0FE",
     "ID": "2147479806",
     "ParameterCount": "1",
@@ -1775,6 +1889,32 @@
       },
       {
         "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F14C",
+    "ID": "2147479884",
+    "ParameterCount": "3",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
