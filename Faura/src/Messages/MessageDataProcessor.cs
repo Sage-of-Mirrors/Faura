@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
+using GameFormatReader.Common;
 
 namespace Faura.Messages
 {
@@ -368,6 +369,38 @@ namespace Faura.Messages
             Enum value = (Enum)Enum.Parse(source, upperCase);
 
             return value;
+        }
+
+        public static void PadMessageReader(EndianBinaryReader reader)
+        {
+            // Pad up to a 4 byte alignment
+            // Formula: (x + (n-1)) & ~(n-1)
+            long nextAligned = (reader.BaseStream.Position + (4 - 1)) & ~(4 - 1);
+
+            long delta = nextAligned - reader.BaseStream.Position;
+            //reader.BaseStream.Position = reader.BaseStream.Position;
+
+            if (reader.BaseStream.Position + delta > reader.BaseStream.Length - 1)
+                return;
+
+            for (int i = 0; i < delta; i++)
+            {
+                reader.SkipByte();
+            }
+        }
+
+        public static void PadMessageWriter(EndianBinaryWriter writer)
+        {
+            // Pad up to a 4 byte alignment
+            // Formula: (x + (n-1)) & ~(n-1)
+            long nextAligned = (writer.BaseStream.Length + (4 - 1)) & ~(4 - 1);
+
+            long delta = nextAligned - writer.BaseStream.Length;
+            writer.BaseStream.Position = writer.BaseStream.Length;
+            for (int i = 0; i < delta; i++)
+            {
+                writer.Write((byte)0);
+            }
         }
     }
 }

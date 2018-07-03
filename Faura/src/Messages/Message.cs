@@ -95,7 +95,7 @@ namespace Faura.Messages
             byte[] rawMessageData = reader.ReadBytes(mMessageLength);
             mMessageData = MessageDataProcessor.DecodeBytes(rawMessageData).Trim();
 
-            PadMessageReader(reader);
+            MessageDataProcessor.PadMessageReader(reader);
         }
 
         public void Write(EndianBinaryWriter writer, int index)
@@ -112,36 +112,7 @@ namespace Faura.Messages
             writer.Write(rawMessageData.Length);
             writer.Write(rawMessageData);
 
-            PadMessageWriter(writer);
-        }
-
-        private void PadMessageReader(EndianBinaryReader reader)
-        {
-            // Pad up to a 4 byte alignment
-            // Formula: (x + (n-1)) & ~(n-1)
-            long nextAligned = (reader.BaseStream.Position + (4 - 1)) & ~(4 - 1);
-
-            long delta = nextAligned - reader.BaseStream.Position;
-            //reader.BaseStream.Position = reader.BaseStream.Position;
-
-            for (int i = 0; i < delta; i++)
-            {
-                reader.SkipByte();
-            }
-        }
-
-        private void PadMessageWriter(EndianBinaryWriter writer)
-        {
-            // Pad up to a 4 byte alignment
-            // Formula: (x + (n-1)) & ~(n-1)
-            long nextAligned = (writer.BaseStream.Length + (4 - 1)) & ~(4 - 1);
-
-            long delta = nextAligned - writer.BaseStream.Length;
-            writer.BaseStream.Position = writer.BaseStream.Length;
-            for (int i = 0; i < delta; i++)
-            {
-                writer.Write((byte)0);
-            }
+            MessageDataProcessor.PadMessageWriter(writer);
         }
     }
 }

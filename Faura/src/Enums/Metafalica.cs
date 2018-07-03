@@ -41,7 +41,8 @@ namespace Faura.Enums.Metafalica
         INFEL = 25,
         CYNTHIA = 27,
         SOOPE = 31,
-        DIVE_SHOP_LENLEN = 99
+        DIVE_SHOP_LENLEN = 99,
+        AYATANE = 135
     }
 
     public enum PortraitSlot : int
