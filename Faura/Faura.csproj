@@ -69,6 +69,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="src\Resources\CommandTemplates\elemia.json" />
     <Resource Include="src\Resources\CommandTemplates\metafalica.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

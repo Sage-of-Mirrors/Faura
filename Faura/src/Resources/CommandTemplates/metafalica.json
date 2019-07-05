@@ -1650,6 +1650,20 @@
   },
 
   {
+    "Name": "func_F0DF",
+    "ID": "2147479775",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
     "Name": "func_F0E0",
     "ID": "2147479776",
     "ParameterCount": "2",
@@ -1978,6 +1992,13 @@
         "EnumName": "none"
       }
     ]
+  },
+
+  {
+    "Name": "func_F10E",
+    "ID": "2147479822",
+    "ParameterCount": "0",
+    "Variables": []
   },
 
   {

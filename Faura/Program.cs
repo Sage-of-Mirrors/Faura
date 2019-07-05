@@ -11,26 +11,6 @@ namespace Faura
     {
         static void Main(string[] args)
         {
-            using (FileStream stream = new FileStream(@"D:\Ar Tonelico\name_ids.txt", FileMode.Open))
-            {
-                StreamReader reader = new StreamReader(stream);
-
-                using (FileStream outStream = new FileStream(@"D:\Ar Tonelico\name_enum.txt", FileMode.Create))
-                {
-                    StreamWriter writer = new StreamWriter(outStream);
-                    writer.AutoFlush = true;
-                    writer.Write("public enum CharacterNameID\n{\n");
-
-                    while (!reader.EndOfStream)
-                    {
-                        string[] parts = reader.ReadLine().Split('=');
-                        writer.WriteLine($"\t{ parts[1].Replace(' ', '_').Replace("\'", "").ToUpper() } = { parts[0] },");
-                    }
-
-                    writer.Write("}");
-                }
-            }
-
             if (args.Length == 0 || args[0] == "-h" || args[0] == "--help")
             {
                 ShowHelp();
