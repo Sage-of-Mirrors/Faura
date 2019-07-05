@@ -69,7 +69,8 @@ namespace Faura
             Console.WriteLine("\t--help/-h\t\tDisplay this help message");
             Console.WriteLine();
             Console.WriteLine("Supported Versions:");
-            Console.WriteLine("\tmetafalica: Ar tonelico II: Melody of Metafalica");
+            Console.WriteLine("\telemia\t\tAr tonelico: Melody of Elemia");
+            Console.WriteLine("\tmetafalica\tAr tonelico II: Melody of Metafalica");
         }
     }
 }

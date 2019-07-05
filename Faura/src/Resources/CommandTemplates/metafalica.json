@@ -505,6 +505,26 @@
   },
 
   {
+    "Name": "func_F03E",
+    "ID": "2147479614",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
     "Name": "CreateParticleEffect",
     "ID": "2147479615",
     "ParameterCount": "2",
@@ -517,6 +537,50 @@
       },
       {
         "Name": "id",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F040",
+    "ID": "2147479616",
+    "ParameterCount": "6",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk4",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk5",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk6",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
@@ -628,6 +692,26 @@
   {
     "Name": "func_F059",
     "ID": "2147479641",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F05A",
+    "ID": "2147479642",
     "ParameterCount": "2",
     "Variables": [
       {
@@ -2598,6 +2682,64 @@
   },
 
   {
+    "Name": "func_F162",
+    "ID": "2147479906",
+    "ParameterCount": "2",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F164",
+    "ID": "2147479908",
+    "ParameterCount": "5",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk2",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      },
+      {
+        "Name": "unk3",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
     "Name": "func_F1E2",
     "ID": "2147480034",
     "ParameterCount": "6",
@@ -3051,6 +3193,20 @@
   {
     "Name": "func_F224",
     "ID": "2147480100",
+    "ParameterCount": "1",
+    "Variables": [
+      {
+        "Name": "unk1",
+        "Value": "0",
+        "HasEnum": "false",
+        "EnumName": "none"
+      }
+    ]
+  },
+
+  {
+    "Name": "func_F225",
+    "ID": "2147480101",
     "ParameterCount": "1",
     "Variables": [
       {
