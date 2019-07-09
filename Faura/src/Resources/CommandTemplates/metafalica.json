@@ -48,12 +48,12 @@
   },
 
   {
-    "Name": "func_F00D",
+    "Name": "SetCosmosphereBackground",
     "ID": "2147479565",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "ipuID",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
@@ -249,7 +249,7 @@
   },
 
   {
-    "Name": "func_F023",
+    "Name": "SetPortraitBorderVisibility",
     "ID": "2147479587",
     "ParameterCount": "2",
     "Variables": [
@@ -260,10 +260,10 @@
         "EnumName": "PortraitSlot"
       },
       {
-        "Name": "unk2",
+        "Name": "visible",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "VisibilityEnum"
       }
     ]
   },
@@ -854,15 +854,15 @@
   },
 
   {
-    "Name": "SetUI",
+    "Name": "SetLeafCounterVisibility",
     "ID": "2147479669",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "id",
+        "Name": "visible",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "VisibilityEnum"
       }
     ]
   },
@@ -934,12 +934,12 @@
   },
 
   {
-    "Name": "func_F078",
+    "Name": "PlayCosmosphereIntro",
     "ID": "2147479672",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "movieID",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
@@ -1083,15 +1083,15 @@
   },
 
   {
-    "Name": "func_F097",
+    "Name": "SetGraphicsMode",
     "ID": "2147479703",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "mode",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "GraphicsMode"
       }
     ]
   },
@@ -2065,12 +2065,12 @@
   },
 
   {
-    "Name": "func_F10D",
+    "Name": "SetCosmosphereMusic",
     "ID": "2147479821",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "id",
         "Value": "0",
         "HasEnum": "false",
         "EnumName": "none"
@@ -2274,15 +2274,15 @@
   },
 
   {
-    "Name": "func_F12F",
+    "Name": "SetTextboxMode",
     "ID": "2147479855",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "mode",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "TextboxMode"
       }
     ]
   },
@@ -2295,15 +2295,15 @@
   },
 
   {
-    "Name": "func_F136",
+    "Name": "SetDPCounterVisiblity",
     "ID": "2147479862",
     "ParameterCount": "1",
     "Variables": [
       {
-        "Name": "unk1",
+        "Name": "visibility",
         "Value": "0",
-        "HasEnum": "false",
-        "EnumName": "none"
+        "HasEnum": "true",
+        "EnumName": "VisibilityEnum"
       }
     ]
   },

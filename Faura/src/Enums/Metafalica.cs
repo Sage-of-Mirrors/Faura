@@ -81,6 +81,24 @@ namespace Faura.Enums.Metafalica
         COSMOSPHERE_CENTER_PORTRAIT = 12
     }
 
+    public enum TextboxMode : int
+    {
+        SNAP_TO_SPEAKER,
+        SINGLE_TEXTBOX
+    }
+
+    public enum VisibilityEnum : int
+    {
+        INVISIBLE,
+        VISIBLE
+    }
+
+    public enum GraphicsMode : int
+    {
+        COSMOSPHERE,
+        OVERWORLD
+    }
+
     public enum CharacterID : int
     {
         LUCA = 0,

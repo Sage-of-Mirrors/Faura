@@ -32,6 +32,9 @@ namespace Faura.Enums
             metaEnums.Add(Metafalica.SoundID.dummy);
             metaEnums.Add(Metafalica.PortraitID.NONE);
             metaEnums.Add(Metafalica.EnemyID.dummy);
+            metaEnums.Add(Metafalica.TextboxMode.SINGLE_TEXTBOX);
+            metaEnums.Add(Metafalica.VisibilityEnum.INVISIBLE);
+            metaEnums.Add(Metafalica.GraphicsMode.COSMOSPHERE);
 
             return metaEnums.ToArray();
         }
