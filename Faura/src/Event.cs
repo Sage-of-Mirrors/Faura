@@ -294,9 +294,8 @@ namespace Faura
                     foreach (string str in strArray)
                     {
                         byte[] chars = MessageDataProcessor.EncodeString(str);
-                        writer.Write((int)chars.Length + 1);
+                        writer.Write((int)chars.Length);
                         writer.Write(chars);
-                        writer.Write((byte)0);
                         MessageDataProcessor.PadMessageWriter(writer);
                     }
                 }
